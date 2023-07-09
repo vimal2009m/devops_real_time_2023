@@ -19,11 +19,11 @@ pipeline {
         }
         
         
-        // stage('BUILD') {
-        //     steps {
-        //         sh 'mvn clean install package'
-        //     }
-        // } 
+        stage('BUILD') {
+            steps {
+                sh 'mvn clean install package'
+            }
+        } 
         
         // stage('SONAR SCANNER') {
         //     environment {
