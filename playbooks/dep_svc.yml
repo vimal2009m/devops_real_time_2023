@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: my-app
-        image: dockerhub_username/image_name       
+        image: dockerhub_username/image_name:latest      
         ports:
         - containerPort: 8080        
         readinessProbe:
