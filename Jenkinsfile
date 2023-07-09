@@ -38,15 +38,15 @@ pipeline {
         //     }
         // }
 
-        // stage('MODIFIED IMAGE TAG') {
-        //     steps {
-        //         sh '''
-        //            export dockerhub_username=sunnydevops2022
-        //            echo $dockerhub_username
-        //            cat playbooks/dep_svc.yml
-        //            '''
-        //     }            
-        // } 
+        stage('MODIFIED IMAGE TAG') {
+            steps {
+                sh '''
+                   export dockerhub_username=sunnydevops2022
+                   echo $dockerhub_username
+                   cat $WORKSPACE/playbooks/dep_svc.yml
+                   '''
+            }            
+        } 
         
         // stage('COPY JAR & DOCKERFILE') {
         //     steps {
