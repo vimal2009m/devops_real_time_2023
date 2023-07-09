@@ -39,19 +39,18 @@ pipeline {
             }
         } 
         
-        // stage('SONAR SCANNER') {
-        //     environment {
-        //     sonar_token = credentials('SONAR_TOKEN')
-        //     sonar_private_ip = credentials('SONAR_PRIVATE_IP')
-        //     }
-        //     steps {
-        //         sh 'mvn sonar:sonar -Dsonar.projectName=$JOB_NAME \
-        //             -Dsonar.projectKey=$JOB_NAME \
-        //             -Dsonar.host.url=http://$sonar_private_ip:9000 \
-        //             -Dsonar.token=$sonar_token'
-        //     }
-        // }
-
+        stage('SONAR SCANNER') {
+            environment {
+            sonar_token = credentials('SONAR_TOKEN')
+            sonar_private_ip = credentials('SONAR_PRIVATE_IP')
+            }
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.projectName=$JOB_NAME \
+                    -Dsonar.projectKey=$JOB_NAME \
+                    -Dsonar.host.url=http://$sonar_private_ip:9000 \
+                    -Dsonar.token=$sonar_token'
+            }
+        }
      
         stage('COPY JAR & DOCKERFILE') {
             steps {
