@@ -42,7 +42,6 @@ pipeline {
             steps {
                 sh '''
                    export DOCKERHUB_USER=sunnydevops2022
-                   echo $DOCKERHUB_USER
                    cat $WORKSPACE/playbooks/dep_svc.yml
                    echo "#########################################################################"
                    sed -i "s/dockerhub_username/$DOCKERHUB_USER/g" $WORKSPACE/playbooks/dep_svc.yml
@@ -52,11 +51,11 @@ pipeline {
             }            
         } 
         
-        // stage('COPY JAR & DOCKERFILE') {
-        //     steps {
-        //         sh 'ansible-playbook playbooks/create_directory.yml'
-        //     }
-        // }
+        stage('COPY JAR & DOCKERFILE') {
+            steps {
+                sh 'ansible-playbook playbooks/create_directory.yml'
+            }
+        }
         
         // stage('PUSH IMAGE ON DOCKERHUB') {
         //     environment {
