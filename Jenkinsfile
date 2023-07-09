@@ -30,8 +30,7 @@ pipeline {
                    cat $WORKSPACE/playbooks/dep_svc.yml                   
                    '''
             }            
-        }         
-        
+        }        
         
         stage('BUILD') {
             steps {
