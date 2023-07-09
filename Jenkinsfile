@@ -18,15 +18,6 @@ pipeline {
             }
         }
         
-        stage('MODIFIED IMAGE TAG') {
-            steps {
-                sh '''
-                   sed "s/image-name:latest/$JOB_NAME:v1.$BUILD_ID/g" playbooks/dep_svc.yml
-                   sed -i "s/image-name:latest/$JOB_NAME:v1.$BUILD_ID/g" playbooks/dep_svc.yml
-                   sed -i "s/IMAGE_NAME/$JOB_NAME:v1.$BUILD_ID/g" webapp/src/main/webapp/index.jsp
-                   '''
-            }            
-        }
         
         stage('BUILD') {
             steps {
@@ -44,6 +35,16 @@ pipeline {
                     -Dsonar.host.url=http://172.31.84.238:9000 \
                     -Dsonar.token=$sonar_token'
             }
+        }
+
+        stage('MODIFIED IMAGE TAG') {
+            steps {
+                sh '''
+                   sed "s/image-name:latest/$JOB_NAME:v1.$BUILD_ID/g" playbooks/dep_svc.yml
+                   sed -i "s/image-name:latest/$JOB_NAME:v1.$BUILD_ID/g" playbooks/dep_svc.yml
+                   sed -i "s/IMAGE_NAME/$JOB_NAME:v1.$BUILD_ID/g" webapp/src/main/webapp/index.jsp
+                   '''
+            }            
         } 
         
         stage('COPY JAR & DOCKERFILE') {
