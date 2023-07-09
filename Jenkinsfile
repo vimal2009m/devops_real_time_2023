@@ -53,27 +53,27 @@ pipeline {
         
         stage('COPY JAR & DOCKERFILE') {
             steps {
-                sh 'ansible-playbook playbooks/create_directory.yml'
+                sh 'ansible-playbook $WORKSPACE/playbooks/create_directory.yml'
             }
         }
         
-        // stage('PUSH IMAGE ON DOCKERHUB') {
-        //     environment {
-        //     dockerhub_user = credentials('DOCKERHUB_USER')            
-        //     dockerhub_pass = credentials('DOCKERHUB_PASS')
-        //     }    
-        //     steps {
-        //         sh 'ansible-playbook playbooks/push_dockerhub.yml \
-        //             --extra-vars "JOB_NAME=$JOB_NAME" \
-        //             --extra-vars "BUILD_ID=$BUILD_ID" \
-        //             --extra-vars "dockerhub_user=$dockerhub_user" \
-        //             --extra-vars "dockerhub_pass=$dockerhub_pass"'              
-        //     }
-        // }
+        stage('PUSH IMAGE ON DOCKERHUB') {
+            environment {
+            dockerhub_user = credentials('DOCKERHUB_USER')            
+            dockerhub_pass = credentials('DOCKERHUB_PASS')
+            }    
+            steps {
+                sh 'ansible-playbook $WORKSPACE/playbooks/push_dockerhub.yml \
+                    --extra-vars "JOB_NAME=$JOB_NAME" \
+                    --extra-vars "BUILD_ID=$BUILD_ID" \
+                    --extra-vars "dockerhub_user=$dockerhub_user" \
+                    --extra-vars "dockerhub_pass=$dockerhub_pass"'              
+            }
+        }
         
         // stage('DEPLOYMENT ON EKS') {
         //     steps {
-        //         sh 'ansible-playbook playbooks/create_pod_on_eks.yml \
+        //         sh 'ansible-playbook $WORKSPACE/playbooks/create_pod_on_eks.yml \
         //             --extra-vars "JOB_NAME=$JOB_NAME"'
         //     }            
         // }          
