@@ -47,6 +47,7 @@ pipeline {
                    sed -i "s/dockerhub_username/$DOCKERHUB_USER/g" $WORKSPACE/playbooks/dep_svc.yml
                    sed -i "s/image_name:latest/$JOB_NAME:v1.$BUILD_ID/g" $WORKSPACE/playbooks/dep_svc.yml                 
                    cat $WORKSPACE/playbooks/dep_svc.yml
+                   sed -i "s/IMAGE_NAME/$JOB_NAME:v1.$BUILD_ID/g" $WORKSPACE/webapp/src/main/webapp/index.jsp
                    '''
             }            
         } 
