@@ -17,6 +17,20 @@ pipeline {
                 git 'https://github.com/sunnydevops2022/devops_real_time_project_1_english.git'
             }
         }
+
+        stage('MODIFIED IMAGE TAG') {
+            steps {
+                sh '''
+                   export DOCKERHUB_USER=sunnydevops2022
+                   sed -i "s/IMAGE_NAME/$JOB_NAME:v1.$BUILD_ID/g" $WORKSPACE/webapp/src/main/webapp/index.jsp
+                   cat $WORKSPACE/playbooks/dep_svc.yml
+                   echo "#########################################################################"
+                   sed -i "s/dockerhub_username/$DOCKERHUB_USER/g" $WORKSPACE/playbooks/dep_svc.yml
+                   sed -i "s/image_name:latest/$JOB_NAME:v1.$BUILD_ID/g" $WORKSPACE/playbooks/dep_svc.yml                 
+                   cat $WORKSPACE/playbooks/dep_svc.yml                   
+                   '''
+            }            
+        }         
         
         
         stage('BUILD') {
@@ -38,20 +52,7 @@ pipeline {
         //     }
         // }
 
-        stage('MODIFIED IMAGE TAG') {
-            steps {
-                sh '''
-                   export DOCKERHUB_USER=sunnydevops2022
-                   cat $WORKSPACE/playbooks/dep_svc.yml
-                   echo "#########################################################################"
-                   sed -i "s/dockerhub_username/$DOCKERHUB_USER/g" $WORKSPACE/playbooks/dep_svc.yml
-                   sed -i "s/image_name:latest/$JOB_NAME:v1.$BUILD_ID/g" $WORKSPACE/playbooks/dep_svc.yml                 
-                   cat $WORKSPACE/playbooks/dep_svc.yml
-                   sed -i "s/IMAGE_NAME/$JOB_NAME:v1.$BUILD_ID/g" $WORKSPACE/webapp/src/main/webapp/index.jsp
-                   '''
-            }            
-        } 
-        
+     
         stage('COPY JAR & DOCKERFILE') {
             steps {
                 sh 'ansible-playbook $WORKSPACE/playbooks/create_directory.yml'
