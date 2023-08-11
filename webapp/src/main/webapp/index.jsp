@@ -35,8 +35,8 @@
     </style>
   </head>
   <body>
-    <h1> We provide online classes, Please find contact details in description box </h1>
-    <h2> Trainer Name: SUNNY GODIWAL </h2>
+    <h1> New DevOps Project Online </h1>
+    <h2> DevOps: VIMAL </h2>
 
     <br>
     <br>
