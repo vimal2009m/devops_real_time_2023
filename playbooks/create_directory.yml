@@ -1,6 +1,6 @@
 ---
 - name: CREATE DIRECTORY & COPY FILES
-  hosts: docker
+  hosts: jennode100
   remote_user: root
   tasks:
     - name: CREATE DOCKER DIRECTORY
@@ -15,4 +15,4 @@
         dest: /opt/docker
 
     - name: COPY WAR FILE
-      command: sudo scp -r root@172.31.77.67:/var/lib/jenkins/workspace/test123/webapp/target/webapp.war /opt/docker
+      command: sudo scp -r root@172.31.45.193:/var/lib/jenkins/workspace/test123/webapp/target/webapp.war /opt/docker
