@@ -1,6 +1,6 @@
 ---
 - name: IMAGE PUSH
-  hosts: docker
+  hosts: localhost
   remote_user: root
   tasks:
     - name: TAG IMAGE WITH BUILD ID & LATEST
