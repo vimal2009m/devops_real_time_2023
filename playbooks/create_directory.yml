@@ -7,7 +7,7 @@
       file:
         path: /opt/docker
         state: directory
-        mode: "0755"      
+        mode: "0777"      
 
     - name: COPY DOCKERFILE
       copy:
