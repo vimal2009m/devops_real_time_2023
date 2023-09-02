@@ -13,6 +13,6 @@
         src: ../Dockerfile
         dest: /opt/docker
     - name: COPY WAR FILE
-      command: sudo cp -r /var/lib/jenkins/workspace/test123/webapp/target/webapp.war /opt/docker
+      command: sudo cp -r /var/lib/jenkins/workspace/sonarqube-test01/webapp/target/webapp.war /opt/docker
 
     
