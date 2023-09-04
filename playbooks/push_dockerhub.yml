@@ -6,17 +6,17 @@
     - name: TAG IMAGE WITH BUILD ID & LATEST
       shell: |
         cd /opt/docker
-        docker build -t 826316/maven .
+        docker build -t 826316/maven01 .
         
 
     - name: LOGIN DOCKERHUB & PUSH IMAGE ON REGISTRY
       shell: |        
         docker login -u 826316 -p ${dockerhub_pass}
-        docker push 826316/maven
+        docker push 826316/maven01
         
 
     - name: REMOVE OLD IMAGES FROM SERVER
-      shell: docker rmi -f 826316/maven
+      shell: docker rmi -f 826316/maven01
 
     - name: LOGOUT DOCKERHUB
       shell: docker logout
